@@ -58,3 +58,114 @@ body {
   margin-bottom: 20px;
   opacity: 0.85;
 }
+
+/* ===== Card grid (1 column by default = small mobile) ===== */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 600px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 960px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===== Student card ===== */
+.student-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;               /* lets long text shrink instead of stretching the grid */
+  overflow: hidden;
+  background-color: var(--card-bg);
+  color: var(--text);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.card-photo {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  background-color: #dfe8e5;
+}
+
+/* Placeholder shown when the image is missing or broken */
+.card-photo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 150px;
+  background-color: #dfe8e5;
+  color: var(--bg);
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+  padding: 16px;
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-name {
+  min-width: 0;
+  font-size: 1.1rem;
+  overflow-wrap: anywhere;
+  /* show at most 2 lines, then "..." */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-detail {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  overflow-wrap: anywhere;    /* long emails / words wrap instead of overflowing */
+}
+
+.card-description {
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+  /* show at most 3 lines, then "..." */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===== Status badge ===== */
+.status-badge {
+  flex-shrink: 0;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.status-pending  { background-color: #b7791f; }
+.status-accepted { background-color: #2f855a; }
+.status-rejected { background-color: #c53030; }
