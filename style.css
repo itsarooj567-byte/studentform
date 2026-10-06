@@ -247,3 +247,23 @@ body {
 .no-results[hidden] {
   display: none;
 }
+
+/* ===== Small screens (about 320px) ===== */
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .field-search {
+    flex-basis: auto;
+  }
+
+  .btn-reset {
+    width: 100%;
+  }
+}

@@ -16,6 +16,12 @@ function createPhoto(student) {
   img.src = student.image;
   img.alt = "Photo of " + student.name;
   img.loading = "lazy";
+
+  // If the file is missing or broken, swap the image for the placeholder
+  img.addEventListener("error", function () {
+    img.replaceWith(createPlaceholder(student));
+  });
+
   return img;
 }
 
