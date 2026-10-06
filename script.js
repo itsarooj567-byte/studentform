@@ -1,4 +1,9 @@
 const studentGrid = document.getElementById("studentGrid");
+const searchInput = document.getElementById("searchInput");
+const statusFilter = document.getElementById("statusFilter");
+const resetButton = document.getElementById("resetButton");
+const resultCount = document.getElementById("resultCount");
+const noResults = document.getElementById("noResults");
 
 /* Build the photo, or a placeholder with the student's initials */
 function createPhoto(student) {
@@ -84,4 +89,64 @@ function renderStudents(list) {
   });
 }
 
-renderStudents(students);
+/* ===== Search and filter ===== */
+
+/* Case-insensitive search across name, email, department and course */
+function matchesSearch(student, searchText) {
+  if (searchText === "") {
+    return true;
+  }
+  const searchableText = [
+    student.name,
+    student.email,
+    student.department,
+    student.course
+  ].join(" ").toLowerCase();
+
+  return searchableText.includes(searchText);
+}
+
+function matchesStatus(student, selectedStatus) {
+  return selectedStatus === "all" || student.status === selectedStatus;
+}
+
+/* A student must pass BOTH the search and the status filter */
+function getFilteredStudents() {
+  const searchText = searchInput.value.trim().toLowerCase();
+  const selectedStatus = statusFilter.value;
+
+  return students.filter(function (student) {
+    return matchesSearch(student, searchText) && matchesStatus(student, selectedStatus);
+  });
+}
+
+function updateResultCount(count) {
+  resultCount.textContent = "Showing " + count + " of " + students.length + " students";
+}
+
+function updateNoResultsMessage(count) {
+  noResults.hidden = count !== 0;
+}
+
+/* Re-draw the page using the current search and filter values */
+function updatePage() {
+  const filtered = getFilteredStudents();
+  renderStudents(filtered);
+  updateResultCount(filtered.length);
+  updateNoResultsMessage(filtered.length);
+}
+
+function resetFilters() {
+  searchInput.value = "";
+  statusFilter.value = "all";
+  updatePage();
+}
+
+function setupEventListeners() {
+  searchInput.addEventListener("input", updatePage);   // filters as the user types
+  statusFilter.addEventListener("change", updatePage);
+  resetButton.addEventListener("click", resetFilters);
+}
+
+setupEventListeners();
+updatePage();

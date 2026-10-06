@@ -18,9 +18,32 @@
     <h1 class="page-title">Student Applications</h1>
     <p class="page-subtitle">Browse every application, then search or filter by status.</p>
 
+    <section class="toolbar" aria-label="Search and filters">
+      <div class="field field-search">
+        <label for="searchInput">Search</label>
+        <input type="search" id="searchInput" placeholder="Search by name, email or course">
+      </div>
+
+      <div class="field">
+        <label for="statusFilter">Status</label>
+        <select id="statusFilter">
+          <option value="all">All statuses</option>
+          <option value="Pending">Pending</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Rejected">Rejected</option>
+        </select>
+      </div>
+
+      <button type="button" id="resetButton" class="btn-reset">Reset</button>
+    </section>
+
+    <p id="resultCount" class="result-count" aria-live="polite"></p>
+
     <section id="studentGrid" class="card-grid" aria-label="Student records">
       <!-- cards will be added here -->
     </section>
+
+    <p id="noResults" class="no-results" hidden>No results found</p>
   </main>
 
   <footer class="site-footer">
