@@ -1,0 +1,60 @@
+/* ===== Base ===== */
+:root {
+  --bg: #2b6b5e;
+  --bg-dark: #1f5146;
+  --card-bg: #ffffff;
+  --text: #1f2d2a;
+  --text-light: #5b6b67;
+  --gold: #c9a227;
+  --radius: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  line-height: 1.5;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ===== Header & footer ===== */
+.site-header {
+  background-color: var(--bg-dark);
+  padding: 14px 0;
+}
+
+.site-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.site-footer {
+  margin-top: 40px;
+  padding: 16px 0;
+  background-color: var(--bg-dark);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ===== Page title ===== */
+.page-title {
+  margin-top: 28px;
+  font-size: 1.8rem;
+}
+
+.page-subtitle {
+  margin-bottom: 20px;
+  opacity: 0.85;
+}
